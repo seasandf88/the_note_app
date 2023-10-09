@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+
+<!-- page title -->
+{% block title %} Home {% endblock %}
+
+<!-- Homepage body -->
+{% block main%}
+<header id="home-header">
+  <div class="container header">
+    <div id="logo">
+      <h3>The</h3>
+      <h1>Note<span class="bold">App</span></h1>
+    </div>
+    <div id="search-div">
+      <form action="/result" method="post">
+        <input type="text" name="search" id="search-field" />
+        <input type="submit" value="search" class="btn btn-accent1" />
+      </form>
+    </div>
+    <div class="user">
+      <h3 id="greet">Hello, Fahed</h3>
+      <div id="controls">
+        <button class="btn btn-primary">add note</button>
+        <button class="btn btn-secondary">log out</button>
+      </div>
+    </div>
+  </div>
+</header>
+<div class="container"></div>
+{% endblock %}

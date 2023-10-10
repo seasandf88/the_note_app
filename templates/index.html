@@ -20,20 +20,26 @@
     <div class="user">
       <h3 id="greet">Hello, {{user_name}}</h3>
       <div id="controls">
-        <button class="btn btn-primary">add note</button>
+        <button class="btn btn-primary" id="add-note">add note</button>
         <a href="/logout" class="btn btn-secondary">log out</a>
       </div>
     </div>
   </div>
 </header>
-<div class="continer" id="notes-list">
-
+<div class="container" id="notes-list">
+  {% for note in user_notes %}
+  <div class="card {{note['color']}}">
+    <p class="timestamp">{{note["timestamp"]}}</p>
+    <p class="content">{{ note["content"] }}</p>
+  </div>
+  {% endfor %}
 </div>
-<dialog>
+<dialog id="note-dialog">
+  <h3>Type your note bellow:</h3>
   <form action="/new-note" method="post">
-    <input type="text" name="note" id="note">
+    <textarea name="note" id="note" minlength="5" required></textarea>
+    <input type="submit" value="submit" class="btn btn-primary" />
   </form>
 </dialog>
-<h1>{{name}}</h1>
-<div class="container"></div>
+
 {% endblock %}

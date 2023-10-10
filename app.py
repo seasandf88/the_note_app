@@ -1,4 +1,4 @@
-import datetime, json
+import datetime, json, random
 
 from flask import Flask, redirect, render_template, request, session
 
@@ -12,8 +12,11 @@ app.permanent_session_lifetime = datetime.timedelta(days=1)
 @app.route("/", methods=["GET", "POST"])
 def index():
     if "user" in session:
-        user = session["user"]
-        return render_template("/index.html", user_name=user)
+        username = session["user"]
+        users = read_json()
+        for user in users:
+            if user["name"] == username:
+                return render_template("/index.html", user_name=user["name"], user_notes=user["notes"])
     else:
         return redirect("/login")
 
@@ -22,10 +25,18 @@ def index():
 @app.route("/login", methods=["GET", "POST"])
 def login():
     if request.method == "POST":
-        user = request.form.get("user_name")
-        session["user"] = user
+        username = request.form.get("user_name")
+        users = read_json()
+        session["user"] = username
         session.permanent = True
-        return redirect("/new-user")
+        if len(users) == 0:
+            return redirect("/new-user")
+        else:
+            for user in users:
+                if username == user["name"]:
+                    return redirect("/")
+                else:
+                    return redirect("/new-user")
     else:
         return render_template("/login.html")
 
@@ -49,6 +60,7 @@ def logout():
 def new_user():
     username = session["user"]
     user = create_user(username)
+
     with open("./users.json", "r") as file:
         users = json.load(file)
         users.append(user)
@@ -58,11 +70,42 @@ def new_user():
     return redirect('/welcome')
 
 
+@app.route("/new-note", methods=["POST"])
+def new_note():
+    username = session["user"]
+    content = request.form.get("note")
+    users = read_json()
+    for user in users:
+        if (user["name"] == username):
+            number_of_notes = len(user["notes"])
+            note = create_note(number_of_notes, content)
+            user["notes"].append(note)
 
+    write_json(users)
+    return redirect("/")
+            
+
+@app.route("/users")
+def users_json():
+    
+    return read_json( ) 
 
 def create_user(name):
     return {"name": name, "notes": []}
 
-def create_note(id, content, color):
-    date = datetime.now()
-    return {"id": id, "timestamp": date.strftime("%d %b %Y %H %M").split(" "), "content": content, "color": color}
+def create_note(id, content):
+    date = datetime.datetime.now()
+    rand = random.randint(1, 7)
+    color = "accent-" + str(rand)
+    return {"id": id, "timestamp": date.strftime("%d %b %y %H:%M"), "content": content, "color": color}
+
+
+def read_json():
+    with open("./users.json", "r") as file:
+        file_content = json.load(file)
+    return file_content
+
+
+def write_json(data):
+    with open("./users.json", "w") as file:
+        file.write(json.dumps(data, indent = 2))

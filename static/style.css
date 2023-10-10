@@ -3,8 +3,11 @@
   --secondary-color: #ffa154;
   --beige-color: #ffe5b1;
   --light-color: #d9f5ff;
-  --text-color: #444;
+  --text-color: #666;
   --accent-color1: #00c968;
+  --accent-color2: #c93900;
+  --accent-color3: #eb0aff;
+  --accent-color4: #00c2e4;
   --box-shadow: 0 0 8px #bbb;
 }
 
@@ -177,4 +180,88 @@ header {
 
 .btn-accent1 {
   background-color: var(--accent-color1);
+}
+
+#note-dialog {
+  width: 400px;
+  border-radius: 10px;
+  border: none;
+  padding: 2rem;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+}
+
+#note-dialog h3 {
+  margin: 0.25rem;
+}
+
+#note-dialog textarea {
+  width: 100%;
+  height: 150px;
+  padding: 12px 20px;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  background-color: #f8f8f8;
+  font-size: 1rem;
+  resize: none;
+  margin: 0.25rem;
+}
+
+#note-dialog textarea:focus {
+  outline: none;
+}
+
+.container#notes-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1.5rem;
+  padding: 1rem 0;
+}
+
+.card {
+  background-color: white;
+  height: 150px;
+  border-radius: 10px;
+  padding: 20px;
+  color: var(--text-color);
+}
+
+.card .timestamp {
+  text-align: right;
+  font-size: .8rem;
+}
+
+.accent-1 {
+  border-top: .5rem solid var(--accent-color1);
+  color:  var(--accent-color1);
+}
+.accent-2 {
+  border-top: .5rem solid var(--primary-color);
+  color:  var(--primary-color);
+}
+.accent-3 {
+  border-top: .5rem solid var(--secondary-color);
+  color:  var(--secondary-color);
+}
+.accent-4 {
+  border-top: .5rem solid var(--text-color);
+  color:  var(--text-color);
+}
+.accent-5 {
+  border-top: .5rem solid var(--accent-color2);
+  color:  var(--accent-color2);
+}
+.accent-6 {
+  border-top: .5rem solid var(--accent-color3);
+  color:  var(--accent-color3);
+}
+.accent-7 {
+  border-top: .5rem solid var(--accent-color4);
+  color:  var(--accent-color4);
+}
+
+.card .content {
+  color: var(--text-color);
 }

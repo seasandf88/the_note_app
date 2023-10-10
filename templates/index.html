@@ -18,13 +18,22 @@
       </form>
     </div>
     <div class="user">
-      <h3 id="greet">Hello, Fahed</h3>
+      <h3 id="greet">Hello, {{user_name}}</h3>
       <div id="controls">
         <button class="btn btn-primary">add note</button>
-        <button class="btn btn-secondary">log out</button>
+        <a href="/logout" class="btn btn-secondary">log out</a>
       </div>
     </div>
   </div>
 </header>
+<div class="continer" id="notes-list">
+
+</div>
+<dialog>
+  <form action="/new-note" method="post">
+    <input type="text" name="note" id="note">
+  </form>
+</dialog>
+<h1>{{name}}</h1>
 <div class="container"></div>
 {% endblock %}

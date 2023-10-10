@@ -1,12 +1,21 @@
 const addNoteBtn = document.getElementById("add-note")
 const noteDialog = document.getElementById("note-dialog")
+const formCancel = document.getElementById("form-cancel")
+const deleteButtons = document.querySelectorAll(".delete-button")
+const cards = document.querySelectorAll(".card")
+const editDialog = document.getElementById
 
-function openDialog() {
-  noteDialog.showModal()
-}
+addNoteBtn.addEventListener("click", () => noteDialog.showModal())
 
-addNoteBtn.addEventListener("click", openDialog)
+formCancel.addEventListener("click", () => noteDialog.close())
 
-async function fetchNotes() {
-  const respone = await fetch("http://127.0.0.1:5000/users")
-}
+
+deleteButtons.forEach(button => {
+  button.addEventListener("click", () => console.log("hello"))
+});
+
+cards.forEach(card => {
+  card.addEventListener("click", (e) => {
+
+  })
+})

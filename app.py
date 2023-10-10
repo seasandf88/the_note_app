@@ -85,10 +85,18 @@ def new_note():
     return redirect("/")
             
 
-@app.route("/users")
-def users_json():
-    
-    return read_json( ) 
+@app.route("/delete-note", methods=["GET", "POST"])
+def delete():
+    note_id = int(request.form.get("note-id"))
+    users = read_json()
+    for user in users:
+        if user["name"] == session["user"]:
+            filtered_notes = list(filter(lambda n: n["id"] != note_id, user["notes"]))
+            user["notes"] = filtered_notes
+            
+    write_json(users)
+
+    return redirect('/')
 
 def create_user(name):
     return {"name": name, "notes": []}

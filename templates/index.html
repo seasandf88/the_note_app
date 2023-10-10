@@ -28,7 +28,23 @@
 </header>
 <div class="container" id="notes-list">
   {% for note in user_notes %}
-  <div class="card {{note['color']}}">
+  <div class="card {{note['color']}}" data-id="{{note['id']}}">
+    <form action="/delete-note" method="post">
+      <input type="text" name="note-id" id="" value="{{note['id']}}" hidden />
+      <button class="delete-btn" type="submit">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          height="20"
+          viewBox="0 -960 960 960"
+          width="24"
+          class="{{note['color']}}"
+        >
+          <path
+            d="M280-120q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm400-600H280v520h400v-520ZM360-280h80v-360h-80v360Zm160 0h80v-360h-80v360ZM280-720v520-520Z"
+          />
+        </svg>
+      </button>
+    </form>
     <p class="timestamp">{{note["timestamp"]}}</p>
     <p class="content">{{ note["content"] }}</p>
   </div>
@@ -39,6 +55,12 @@
   <form action="/new-note" method="post">
     <textarea name="note" id="note" minlength="5" required></textarea>
     <input type="submit" value="submit" class="btn btn-primary" />
+    <input
+      type="button"
+      value="cancel"
+      class="btn btn-secondary"
+      id="form-cancel"
+    />
   </form>
 </dialog>
 

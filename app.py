@@ -6,10 +6,10 @@ from flask import Flask, redirect, render_template, request, session
 app = Flask("The Note App")
 
 app.secret_key = "hello"
-app.permanent_session_lifetime = datetime.timedelta(days=1)
+# app.permanent_session_lifetime = datetime.timedelta(days=1)
 
 
-@app.route("/", methods=["GET", "POST"])
+@app.route("/", methods=["GET"])
 def index():
     if "user" in session:
         username = session["user"]
@@ -25,28 +25,27 @@ def index():
 @app.route("/login", methods=["GET", "POST"])
 def login():
     if request.method == "POST":
-        username = request.form.get("user_name")
+        username = request.form.get("user-name").lower()
         users = read_json()
         session["user"] = username
-        session.permanent = True
+        # session.permanent = True
         if len(users) == 0:
             return redirect("/new-user")
         else:
             for user in users:
                 if username == user["name"]:
-                    return redirect("/")
-                else:
-                    return redirect("/new-user")
+                    return redirect("/welcome")
+                # else:
+                #     return redirect("/new-user")
     else:
         return render_template("/login.html")
 
 
 @app.route("/welcome")
 def welcome():
-    user = session["user"]    
     return render_template(
         "/welcome.html",
-        user_name=user,
+        user_name=session["user"],
     ), {"Refresh": "2; url=/"}
 
 
@@ -59,14 +58,12 @@ def logout():
 @app.route("/new-user")
 def new_user():
     username = session["user"]
-    user = create_user(username)
+    new_user = create_user(username)
 
-    with open("./users.json", "r") as file:
-        users = json.load(file)
-        users.append(user)
+    users = read_json()
+    users.append(new_user)
 
-    with open("./users.json", "w") as file:
-        file.write(json.dumps(users))
+    write_json(users)
     return redirect('/welcome')
 
 

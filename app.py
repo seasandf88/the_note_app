@@ -95,6 +95,21 @@ def delete():
 
     return redirect('/')
 
+
+
+@app.route("/results")
+def results():
+    query = request.args.get("search").lower()
+    users = read_json()
+    results = []
+    for user in users:
+        if user["name"] == session["user"]:
+            for note in user["notes"]:
+                if note["content"].lower().find(query) != -1:
+                    results.append(note)
+            return render_template("/results.html", user_name=user["name"], results=results)
+
+
 def create_user(name):
     return {"name": name, "notes": []}
 

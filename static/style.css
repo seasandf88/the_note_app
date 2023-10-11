@@ -108,8 +108,9 @@ header {
 }
 
 .container.header {
-  display: flex;
+  display: grid;
   justify-content: space-between;
+  grid-template-columns: 1fr 6fr 3fr ;
   align-items: end;
   height: 100%;
 }
@@ -129,11 +130,10 @@ header {
 
 #logo {
   transform: scale(1.2);
-  margin: 0.25rem;
+  margin: 0.25rem .5rem;
 }
 
 #search-div {
-  flex-grow: 1;
   text-align: center;
 }
 
@@ -144,8 +144,14 @@ header {
   padding: 1em;
   outline: none;
   height: 2.5em;
-  width: 50%;
+  width: 60%;
   color: var(--text-color);
+}
+
+.search-title {
+  margin: 1rem auto 0.25rem;
+  color: var(--text-color);
+  text-align: center;
 }
 
 .user {
@@ -161,6 +167,7 @@ header {
 #controls {
   display: flex;
   align-items: center;
+  justify-content: flex-end;
 }
 
 .btn {

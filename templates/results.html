@@ -20,14 +20,20 @@
     <div class="user">
       <h3 id="greet">Hello, {{user_name}}</h3>
       <div id="controls">
-        <button class="btn btn-primary" id="add-note">add note</button>
-        <a href="/logout" class="btn btn-secondary">log out</a>
+        <a href="/" class="btn btn-secondary">home</a>
       </div>
     </div>
   </div>
 </header>
+<h2 class="search-title">
+  {% if results == [] %}
+      No matching results!
+  {% else %}
+      Search results:
+  {% endif %}
+  </h2>
 <div class="container" id="notes-list">
-  {% for note in user_notes %}
+  {% for note in results %}
   <div class="card {{note['color']}}" data-id="{{note['id']}}">
     <form action="/delete-note" method="post">
       <input type="text" name="note-id" id="" value="{{note['id']}}" hidden />
@@ -50,18 +56,5 @@
   </div>
   {% endfor %}
 </div>
-<dialog id="note-dialog">
-  <h3>Type your note bellow:</h3>
-  <form action="/new-note" method="post">
-    <textarea name="note" id="note" minlength="5" required></textarea>
-    <input type="submit" value="submit" class="btn btn-primary" />
-    <input
-      type="button"
-      value="cancel"
-      class="btn btn-secondary"
-      id="form-cancel"
-    />
-  </form>
-</dialog>
 
 {% endblock %}

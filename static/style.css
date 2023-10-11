@@ -1,0 +1,299 @@
+:root {
+  --primary-color: #6c63ff;
+  --secondary-color: #ffa154;
+  --beige-color: #ffe5b1;
+  --light-color: #d9f5ff;
+  --text-color: #666;
+  --accent-color1: #00c968;
+  --accent-color2: #c93900;
+  --accent-color3: #eb0aff;
+  --accent-color4: #00c2e4;
+  --box-shadow: 0 0 8px #bbb;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Source Sans 3", sans-serif;
+}
+
+body {
+  min-height: 100vh;
+  background: linear-gradient(var(--beige-color), var(--light-color));
+}
+
+a {
+  text-decoration: none;
+}
+
+.container {
+  width: 80%;
+  max-width: 960px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.container.login {
+  height: 100vh;
+  background-image: url("../static/undraw_taking_notes_re_bnaf.svg");
+  background-repeat: no-repeat;
+  background-size: 500px;
+  background-position: 0 50%;
+}
+
+.container.welcome {
+  background-image: url("../static/undraw_preparation_re_t0ce.svg");
+  background-repeat: no-repeat;
+  background-size: 80%;
+  background-position: 32% 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.name-form {
+  /* height: 300px; */
+  width: 400px;
+  background-color: white;
+  border-radius: 10px;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 50%;
+  right: 0;
+  translate: 0 -50%;
+  gap: 1rem;
+  box-shadow: var(--box-shadow);
+}
+
+.name-form #name {
+  height: 40px;
+  outline: none;
+  border-radius: 5px;
+  width: 50%;
+  border: 1px solid #6c63ff;
+  padding: 0.5rem;
+}
+
+.welcome-modal {
+  width: 400px;
+  height: 300px;
+  background-color: white;
+  border-radius: 10px;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  box-shadow: var(--box-shadow);
+}
+
+.welcome-title {
+  font-size: 3rem;
+  font-weight: bolder;
+}
+
+.welcome-name {
+  font-size: 2.5rem;
+  color: var(--primary-color);
+}
+
+header {
+  height: 6.5rem;
+  padding: 0 0 1rem;
+  border-bottom: 2px solid white;
+}
+
+.container.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  height: 100%;
+}
+
+#logo h1,
+#logo h3 {
+  font-weight: 100;
+}
+
+#logo h3 {
+  margin-bottom: -1rem;
+}
+
+#logo .bold {
+  font-weight: 900;
+}
+
+#logo {
+  transform: scale(1.2);
+  margin: 0.25rem;
+}
+
+#search-div {
+  flex-grow: 1;
+  text-align: center;
+}
+
+#search-div #search-field {
+  border-radius: 5px;
+  border: none;
+  font-size: 1rem;
+  padding: 1em;
+  outline: none;
+  height: 2.5em;
+  width: 50%;
+  color: var(--text-color);
+}
+
+.user {
+  text-align: right;
+}
+
+.user #greet {
+  font-weight: 300;
+  color: var(--text-color);
+  margin: 0 0.5rem;
+}
+
+#controls {
+  display: flex;
+  align-items: center;
+}
+
+.btn {
+  padding: 0.5em 1em;
+  font-size: 1rem;
+  height: 2.5rem;
+  border-radius: 5px;
+  border: none;
+  font-weight: 500;
+  cursor: pointer;
+  text-transform: uppercase;
+  color: white;
+  margin: 0.25rem;
+}
+
+.btn-primary {
+  background-color: var(--primary-color);
+}
+
+.btn-secondary {
+  background-color: var(--secondary-color);
+}
+
+.btn-accent1 {
+  background-color: var(--accent-color1);
+}
+
+#note-dialog {
+  width: 400px;
+  border-radius: 10px;
+  border: none;
+  padding: 2rem;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+}
+
+#note-dialog h3 {
+  margin: 0.25rem;
+}
+
+#note-dialog textarea {
+  width: 100%;
+  height: 150px;
+  padding: 12px 20px;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  background-color: #f8f8f8;
+  font-size: 1rem;
+  resize: none;
+  margin: 0.25rem;
+}
+
+#note-dialog textarea:focus {
+  outline: none;
+}
+
+.container#notes-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+  padding: 1rem 0;
+}
+
+.card {
+  background-color: white;
+  height: 150px;
+  border-radius: 10px;
+  padding: 3rem 1rem 1rem;
+  color: var(--text-color);
+  position: relative;
+  word-wrap: break-word;
+  overflow: auto;
+}
+
+.card .timestamp {
+  text-align: right;
+  font-size: 0.8rem;
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+}
+
+.delete-btn {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  position: absolute;
+  top: 0.5rem;
+  left: 0.5rem;
+}
+
+.accent-1 {
+  border-top: 0.5rem solid var(--accent-color1);
+  color: var(--accent-color1);
+  fill: var(--accent-color1);
+}
+.accent-2 {
+  border-top: 0.5rem solid var(--primary-color);
+  color: var(--primary-color);
+  fill: var(--primary-color);
+}
+.accent-3 {
+  border-top: 0.5rem solid var(--secondary-color);
+  color: var(--secondary-color);
+  fill: var(--secondary-color);
+}
+.accent-4 {
+  border-top: 0.5rem solid var(--text-color);
+  color: var(--text-color);
+  fill: var(--text-color);
+}
+.accent-5 {
+  border-top: 0.5rem solid var(--accent-color2);
+  color: var(--accent-color2);
+  fill: var(--accent-color2);
+}
+.accent-6 {
+  border-top: 0.5rem solid var(--accent-color3);
+  color: var(--accent-color3);
+  fill: var(--accent-color3);
+}
+.accent-7 {
+  border-top: 0.5rem solid var(--accent-color4);
+  color: var(--accent-color4);
+  fill: var(--accent-color4);
+}
+
+.card .content {
+  color: var(--text-color);
+}
+
+svg {
+  border: none !important;
+}

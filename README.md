@@ -1,10 +1,12 @@
 # Note App
+## [Live Preview](https://the-note-app.onrender.com/login)
 
+![Preview](./static/Screenshot.png)
 ## Requirements:
 
 1. Ask the user for a first name
 2. Display a **"Welcome username"** message
-3. Save the name to the local storage.
+3. Save the name to the locally.
 4. Redirect to the homepage.
 5. Home page features:
    - Add a note.
@@ -14,25 +16,29 @@
 7. Built on **Flask**.
 8. Commit to Git **regularly**.
 
-## Extra details:
+## Brainstorming:
 
+- multiple users, separate notes.
+- sessions.
+- user can login again to see the notes.
 - The notes are cards.
-- You can filter through the notes.
+- You can search the notes.
 - You can add new note.
 - The cards has random colors.
 - The card has timestamp.
 - You can delete the cards individually.
-- You can assign custom color for the note.
+
 
 ## Logic:
 
 #### First Step:
 
 ```python
-if local storage empty:
+if no user in session:
   show form to enter name
 else:
-  redirect to homepage
+  1. redirect to welcome page
+  2. redirect to homepage after 2 seconds
 ```
 
 #### Second Step:
@@ -49,8 +55,8 @@ else:
 #### Add Note:
 
 ```python
-1. show the add note form
-2. submit the form with "post" method to homepage and write to file
+1. show the add note form on button click.
+2. submit the form with "post" method  and write to file then rerender the new list
 ```
 
 #### Search:
@@ -64,13 +70,15 @@ else:
 #### Delete Note:
 
 ```python
-1. get the not index from element
+1. get the note index from the card
+2. send the index through form post method
 2. delete the note from the notes array[index]
 3. rerender the notes from the updated array
+4. rewrite the file
 ```
 
 #### Log Out:
 
 ```python
-allow the user to log out by clearing the local storage but not the notes file
+allow the user to log out by clearing the session but not the notes file
 ```

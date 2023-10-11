@@ -3,7 +3,7 @@ import datetime, json, random
 from flask import Flask, redirect, render_template, request, session
 
 
-app = Flask("The Note App")
+app = Flask(__name__)
 
 app.secret_key = "hello"
 # app.permanent_session_lifetime = datetime.timedelta(days=1)

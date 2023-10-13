@@ -46,7 +46,9 @@
       </button>
     </form>
     <p class="timestamp">{{note["timestamp"]}}</p>
-    <p class="content">{{ note["content"] }}</p>
+    {% for line in note["content"].strip().split("\n") %}
+    <p class="content">{{ line }}</p>
+    {% endfor %}
   </div>
   {% endfor %}
 </div>
